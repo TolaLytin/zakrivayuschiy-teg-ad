@@ -1,16 +1,312 @@
-/* Здесь вы напишете основную часть стилей страницы.
-
-Будьте внимательны! Для корректной работы скриптов на этом сайте нужно, чтобы в HTML некоторые классы были названы особым образом:
-✦ like-icon — для svg-иконки анимированного сердца
-✦ card__like-button — для кнопки Like рядом с иконкой
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ card__icon-button — для кнопки, оборачивающей иконку
-✦ is-liked — для обозначения состояния лайкнутой иконки в виде сердца
-✦ button__text — для обозначения текстового элемента внутри кнопки
-
-*/
-
 .page {
   min-inline-size: 320px;
-  min-block-size: 100dvb;
+  min-block-size: 100vh;
+  font-family: var(--main-font, sans-serif);
+  font-variation-settings: 'wght' var(--main-font-weight, 400);
+  background-image: var(--background-gradient);
+  background-size: cover;
+  background-attachment: fixed;
+  width: clamp(375px, 31.25vw + 256.25px, 700px);
+}
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  font-family: var(--accent-font, fantasy);
+  margin: 100px 0;
+  padding: var(--header-padding) 0;
+  text-transform: uppercase;
+  text-align: center;
+  background-color: white;
+}
+
+.frame {
+  border: 2px solid black;
+}
+
+.header__title {
+  margin-top: 2px;
+  font-size: clamp(49px, 1.75vw + 42.875px, 65px);
+  font-weight: var(--main-font-weight);
+}
+
+.header__subtitle {
+  font-size: clamp(14px, 0.9375vw + 10.53125px, 23px);
+  font-weight: var(--main-font-weight);
+}
+
+.content {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  gap: 50px;
+  padding-bottom: 103px;
+}
+
+.memory-card {
+  background-color: white;
+  font-size: 18px;
+  font-variation-settings: 'wght' var(--main-font-weight, 400);
+}
+
+.memory-card__title {
+  display: block;
+  font-variation-settings: 'wght' var(--title-font-weight, 700);
+  font-size: 18px;
+  margin: 4px 10px 6px;
+}
+
+.brd-bot {
+  border-bottom: 2px solid black;
+}
+
+.brd-top {
+  border-top: 2px solid black;
+}
+
+.memory-card__image-wrapper {
+  overflow: hidden;
+  position: relative;
+  display: block;
+}
+
+.memory-card__image-label {
+  position: absolute;
+  text-transform: uppercase;
+  top: 25px;
+  right: 25px;
+  opacity: 0.5;
+  background: inherit;
+  mix-blend-mode: hard-light;
+  font-family: var(--accent-font);
+  font-size: 14px;
+  color: #000;
+  z-index: 2;
+
+  -webkit-text-stroke: 1px var(--stroke-color, #fff);
+  text-stroke: 1px var(--stroke-color, #fff);
+}
+
+@supports ((text-stroke: 1px #000) or (-webkit-text-stroke: 1px #000)) {
+  .memory-card__image-label {
+    text-shadow: none;
+    -webkit-text-stroke: 1px var(--stroke-color, #fff);
+    text-stroke: 1px var(--stroke-color, #fff);
+    paint-order: stroke fill;
+  }
+}
+
+@supports not ((text-stroke: 1px #000) or (-webkit-text-stroke: 1px #000)) {
+  .memory-card__image-label {
+    text-shadow: 
+      -1px -1px 0 var(--stroke-color, #fff),
+      1px -1px 0 var(--stroke-color, #fff),
+      -1px 1px 0 var(--stroke-color, #fff),
+      1px 1px 0 var(--stroke-color, #fff);
+  }
+}
+
+.memory-card__image {
+  width: 100%;
+  display: block;
+}
+
+.memory-card__description {
+  margin: 25px;
+  line-height: 21px;
+}
+
+.memory-section {
+  margin: 27px 25px 19px 25px;
+}
+
+.memory-section__text {
+  margin: 0;
+}
+
+.memory-section__actions {
+  margin-top: 25px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
+.card__icon-button {
+  margin-top: 2px;
+  border: none;
+  background-color: inherit;
+}
+
+.card__like-button {
+  width: 130px;
+  height: 38px;
+}
+
+.btn-action {
+  position: relative;
+  background: white;
+  font-family: var(--accent-font);
+  font-size: 14px;
+  border: 2px solid black;
+  cursor: pointer;
+  overflow: hidden;
+  color: black;
+}
+
+.button__text {
+  position: relative;
+  z-index: 1;
+  mix-blend-mode: difference;
+  color: white;
+}
+
+.save-section {
+  display: flex;
+  justify-content: center;
+}
+
+.save-btn {
+  width: 335px;
+  height: 55px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.floppy-icon {
+  mix-blend-mode: difference;
+  filter: brightness(0) invert(1);
+}
+
+.save-btn__floppy {
+  width: 21px;
+  height: 21px;
+}
+
+.modal {
+  font-family: var(--accent-font, Courier, monospace);
+  color: var(--color-main, #000);
+  text-transform: uppercase;
+  max-inline-size: 357px;
+  padding: 30px;
+  background-color: var(--color-bg, #fff);
+  border: 2px solid var(--color-main, #000);
+}
+
+.modal__content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.modal__floppy {
+  width: 39px;
+  height: 39px;
+}
+
+.modal__text {
+  font-size: 14px;
+  line-height: 1.5;
+  flex: 1;
+}
+
+.modal__actions {
+  padding-block-start: 30px;
+}
+
+.modal__close-btn {
+  padding-block: 12.5px;
+  text-transform: uppercase;
+  width: 100%;
+}
+
+.close-btn__text {
+  font-size: 14px;
+}
+
+.modal::backdrop {
+  opacity: 0.75;
+  background-color: rgba(0, 0, 0, 1);
+}
+
+.btn-painted {
+  background: white;
+}
+
+.btn-shadowed {
+  box-shadow: 2px 2px 0 black;
+}
+
+.faded {
+  filter: grayscale(0.79) contrast(0.82);
+}
+
+.neon {
+  filter: saturate(4);
+}
+
+.hue-shift {
+  filter: hue-rotate(30deg);
+}
+
+.negative {
+  filter: invert(1) contrast(0.59);
+}
+
+.sepia {
+  filter: sepia(0.91);
+}
+
+.out-of-focus {
+  filter: blur(13px);
+}
+
+.sepia-red {
+  filter: hue-rotate(90deg) blur(1px) contrast(0.62) saturate(1.5);
+}
+
+@media (width <= 375px) {
+  .header__title {
+    margin-top: -3px;
+  }
+
+  .header__subtitle {
+    margin-top: -1px;
+  }
+
+  .content {
+    padding-bottom: 100px;
+  }
+
+  .new-string::before {
+    content: "\A";
+    white-space: pre;
+  }
+
+  .save-section {
+    padding-top: 2px;
+  }
+
+  .save-btn {
+    flex-direction: column;
+    width: 306px;
+    height: 84px;
+  }
+
+  .save-btn__floppy {
+    width: 28px;
+    height: 28px;
+  }
+
+  .modal {
+    padding: clamp(1.875rem, -2.625rem + 22.5vw, 2.625rem);
+  }
+
+  .memory-card__image-label {
+    right: 13px;
+  }
 }
